@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infomatrix 中文翻译助手 · 截图翻译 + 官网汉化指南</title>
+<style>
+  :root{
+    --bg:#f4f6fb;
+    --card:#ffffff;
+    --ink:#1c2333;
+    --muted:#5b6478;
+    --line:#e5e9f2;
+    --brand:#2f54eb;
+    --brand-2:#5c7cfa;
+    --accent:#0ca678;
+    --warn:#d97706;
+    --danger:#dc2626;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(20,30,60,.05),0 8px 24px rgba(20,30,60,.06);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Segoe UI","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 18px 80px}
+  header.top{
+    background:linear-gradient(135deg,#2f54eb 0%,#4b7bec 55%,#22b8cf 100%);
+    border-radius:20px;padding:26px 28px;color:#fff;box-shadow:var(--shadow);margin-bottom:22px;
+  }
+  header.top h1{margin:0 0 8px;font-size:25px;letter-spacing:.5px}
+  header.top p{margin:0;opacity:.95;font-size:14.5px;max-width:720px}
+  .badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
+    padding:2px 10px;border-radius:999px;font-size:12px;margin-right:6px}
+  nav.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+  nav.tabs button{
+    border:1px solid var(--line);background:#fff;color:var(--muted);
+    padding:10px 20px;border-radius:999px;cursor:pointer;font-size:14.5px;font-weight:600;
+    transition:.15s;font-family:inherit;
+  }
+  nav.tabs button:hover{border-color:var(--brand);color:var(--brand)}
+  nav.tabs button.active{background:var(--brand);border-color:var(--brand);color:#fff}
+  .panel{display:none;animation:fade .25s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px;margin-bottom:18px}
+  .card h2{margin:0 0 6px;font-size:19px}
+  .card .sub{color:var(--muted);font-size:13.5px;margin-bottom:16px}
+  h3{font-size:16px;margin:22px 0 8px}
+  .grid{display:grid;gap:14px}
+  .grid.cats{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+  .cat{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbfcff}
+  .cat b{display:block;color:var(--brand);margin-bottom:6px;font-size:15px}
+  .cat .es{color:var(--muted);font-size:12.5px;margin-bottom:6px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+  th{background:#f3f6ff;color:#26314d;font-weight:700}
+  tr:nth-child(even) td{background:#fafbfe}
+  .num{display:inline-flex;width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;
+    align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-right:6px;vertical-align:middle}
+  .step{display:flex;gap:12px;align-items:flex-start;margin:10px 0}
+  .step .num{flex:none;margin-top:2px}
+  .tip{background:#fff7e8;border:1px solid #f5dfb2;border-radius:12px;padding:12px 16px;font-size:13.5px;color:#7a5310;margin:14px 0}
+  .tip a{color:var(--brand)}
+  .note{background:#eef4ff;border:1px solid #d6e2ff;border-radius:12px;padding:12px 16px;font-size:13.5px;color:#27408b;margin:14px 0}
+  /* translator */
+  .dropzone{
+    border:2px dashed #c3cde4;border-radius:14px;padding:34px 20px;text-align:center;
+    cursor:pointer;color:var(--muted);transition:.15s;background:#fafbff;
+  }
+  .dropzone:hover,.dropzone.drag{border-color:var(--brand);background:#f0f4ff;color:var(--brand)}
+  .dropzone .ic{font-size:34px;display:block;margin-bottom:6px}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .btn{
+    display:inline-flex;align-items:center;gap:6px;border:none;border-radius:10px;cursor:pointer;
+    font-family:inherit;font-size:14px;font-weight:600;padding:10px 16px;transition:.15s;
+  }
+  .btn.primary{background:var(--brand);color:#fff}
+  .btn.primary:hover{background:#2440c0}
+  .btn.ghost{background:#eef1f8;color:#333}
+  .btn.ghost:hover{background:#e2e7f3}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  textarea,select,input[type=text]{
+    width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+    font-family:inherit;font-size:14px;background:#fff;color:var(--ink);
+  }
+  textarea{resize:vertical;min-height:110px}
+  textarea:focus,select:focus,input:focus{outline:2px solid var(--brand-2);outline-offset:0;border-color:transparent}
+  .label{font-weight:700;font-size:13px;color:#485066;margin:14px 0 6px}
+  .preview-wrap{display:flex;flex-direction:column;gap:14px}
+  @media(min-width:820px){.preview-wrap{flex-direction:row}.preview-wrap>div{flex:1}}
+  .outbox{
+    border:1px solid var(--line);border-radius:12px;background:#fbfcff;min-height:130px;
+    padding:14px;white-space:pre-wrap;word-break:break-word;font-size:14.5px;position:relative;
+  }
+  .outbox .copybtn{position:absolute;top:10px;right:10px;opacity:.75}
+  .outbox .copybtn:hover{opacity:1}
+  .outbox.zh{background:#f3f8f6;border-color:#c9e6da;color:#12392a}
+  .progress{font-size:13.5px;color:var(--brand);margin:12px 0;min-height:20px}
+  .engine-tag{font-size:12px;background:#eef1f8;color:#666;padding:2px 9px;border-radius:999px;margin-left:8px}
+  .hidden{display:none!important}
+  .glossary mark{background:#fff3bf;border-radius:3px;padding:0 2px;border-bottom:1px dashed #d97706}
+  .foot{margin-top:30px;text-align:center;color:var(--muted);font-size:12.5px}
+  .foot a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div style="margin-bottom:6px">
+      <span class="badge">SOLACYT</span><span class="badge">Infomatrix · Proyecto Multimedia</span>
+    </div>
+    <h1>Infomatrix 中文翻译助手</h1>
+    <p>这是一个离线即可阅读的本地工具页：左侧「官网汉化指南」汇总了 Infomatrix 竞赛的报名/缴费/作品提交/评分等核心内容的中文翻译；「截图翻译」可上传你截的官网图片，自动识别西班牙语/英语并译成中文；「术语速查」收录了本站高频词汇。</p>
+    <p style="margin-top:8px;font-size:13px;opacity:.9">提示：官网网址 <b>https://www.infomatrix.lat/</b>，以西班牙语为主。动态表单/登录页的内容请用「截图翻译」功能。</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="active" data-tab="guide">📖 官网汉化指南</button>
+    <button data-tab="translate">🖼️ 截图翻译</button>
+    <button data-tab="glossary">🔤 术语速查</button>
+  </nav>
+
+  <!-- ============ 指南 ============ -->
+  <section class="panel active" id="tab-guide">
+    <div class="card">
+      <h2>一、这是什么竞赛？</h2>
+      <p><b>INFOMATRIX</b>（全称 “Proyecto Multimedia”，即“多媒体项目”）是 <b>SOLACYT</b>（拉丁美洲科学与技术协会 / Sociedad Latinoamericana de Ciencia y Tecnología）主办的一项<b>伊比利亚美洲学生项目竞赛</b>，覆盖科学、技术与创业领域，面向学生团队，按项目类别分项评比。</p>
+      <p>适用对象：从学前到大学阶段的学生，团队参赛；多数赛区以 2 人一组为主（学前/小学组可 3 人）。比赛设地区赛（Regional / Sede）与洲际总决赛（Final Continental）两个层级。</p>
+    </div>
+
+    <div class="card">
+      <h2>二、八大竞赛类别</h2>
+      <p class="sub">官网首页 “Categorías del concurso” 的完整中文对照。</p>
+      <div class="grid cats">
+        <div class="cat"><b>🤖 机器人 Robótica</b><div class="es">Robótica</div>制作一个自创的<b>电气 / 电子原型</b>。</div>
+        <div class="cat"><b>🎬 多媒体 Multimedia</b><div class="es">Multimedia</div>制作不超过 <b>7 分钟</b>的短片，或不超过 <b>2.5 分钟</b>、任意技术手法的动画。</div>
+        <div class="cat"><b>🎨 数字艺术 Arte Digital</b><div class="es">Arte Digital</div>提交设计作品，需交付 <b>3–5 件</b>作品来展示自己的创作。</div>
+        <div class="cat"><b>🎲 桌游 Juego de Mesa</b><div class="es">Juego de Mesa</div>设计并开发一款能<b>促进学习</b>的桌游，以自然、有趣、体验式的方式融入教学或思考。</div>
+        <div class="cat"><b>🔬 科学传播 Divulgación Científica</b><div class="es">Divulgación Científica</div>借助<b>数字媒体和/或原型</b>，展示某项科学或技术研究的成果。</div>
+        <div class="cat"><b>💻 软件开发 Desarrollo de Software</b><div class="es">Desarrollo de Software</div>制作<b>应用软件或电子游戏</b>，两类项目都可适配任意平台与设备。</div>
+        <div class="cat"><b>📖 科学故事 Cuento Científico</b><div class="es">Cuento Científico</div>鼓励儿童和青少年开展<b>文学与创意创作</b>。</div>
+        <div class="cat"><b>⚗️ 应用科学 Ciencia Aplicada</b><div class="es">Ciencia Aplicada</div>基于某科学分支的研究，提出<b>方案、创新、材料或产品</b>。</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>三、报名 / 缴费 / 提交流程</h2>
+      <p class="sub">官方 FAQ 明确给出的标准三步。</p>
+      <div class="step"><span class="num">1</span><div><b>报名（Inscribirse）</b><br>在官网 <a href="https://www.infomatrix.lat/" target="_blank">www.infomatrix.lat</a> 的报名表单中登记团队信息。</div></div>
+      <div class="step"><span class="num">2</span><div><b>缴纳注册费（Pago de Registro）</b><br>费用按<b>项目（proyecto）</b>计收，学校若为多个项目报名另有<b>按机构计费</b>的套餐表；支持 <b>PayPal</b> 在线支付。</div></div>
+      <div class="step"><span class="num">3</span><div><b>提交作品（Envió de Proyecto）</b><br>可以在报名并缴费后，<b>之后再提交作品/报告</b>。</div></div>
+      <div class="tip">💡 官网提示的报名顺序是：<b>1 报名 → 2 缴费 → 3 提交作品</b>。也就是说“先报名付款、后交作品”是被允许的。付款有疑问可联系 <a href="mailto:mando@solacyt.org">mando@solacyt.org</a>。</div>
+    </div>
+
+    <div class="card">
+      <h2>四、常见问题（FAQ 精选翻译）</h2>
+      <h3>报名（Inscripción）</h3>
+      <table>
+        <tr><th style="width:34%">问题（原文要点）</th><th>中文解答</th></tr>
+        <tr><td>可以做跨学校/跨年级的混合队伍吗？<br><span style="color:#888">¿Se pueden hacer equipos combinados?</span></td><td>可以，不同学校、不同年级都能组队；但会按<b>队伍中年级最高</b>的成员进入相应组别。</td></tr>
+        <tr><td>我没有指导老师怎么办？</td><td>指导老师（Asesor）可以是成年亲友/朋友；<b>建议登记指导老师</b>，因为赛事通知和信息会发给他/她。</td></tr>
+        <tr><td>能先报名付款、之后再交项目吗？</td><td>可以，流程即：报名 → 缴费 → 提交项目。</td></tr>
+        <tr><td>怎么付款？（我们来自萨尔瓦多等国家）</td><td>可通过 <b>PayPal</b> 在线支付；不熟悉可联系 <a href="mailto:mando@solacyt.org">mando@solacyt.org</a> 获取其它方式。</td></tr>
+        <tr><td>报名费怎么算？按人/按队/按学校？</td><td>按<b>项目</b>计费；学校为多个项目报名时另有按机构计费的<b>价目表</b>（详见“Convocatoria 竞赛通告”）。</td></tr>
+      </table>
+
+      <h3>类别（Categorías）</h3>
+      <table>
+        <tr><th style="width:34%">问题</th><th>中文解答</th></tr>
+        <tr><td>可以用英语做项目吗？</td><td>可以；但如果是<b>视频</b>，必须配上<b>西班牙语字幕</b>。</td></tr>
+        <tr><td>机器人类别开放吗？</td><td>开放，任何类型的原型都可以。</td></tr>
+        <tr><td>游戏（Videojuegos）归哪类？</td><td>归入<b>软件开发（Desarrollo de Software）</b>。</td></tr>
+        <tr><td>用 Flash 做的动画归哪类？必须 3D 吗？</td><td>Flash 可以，归入<b>动画（Animación）</b>，不要求 3D。</td></tr>
+        <tr><td>动画和短片的时长限制？</td><td>动画 <b>2.5 分钟</b>；短片 <b>5 分钟</b>（含片尾字幕）。</td></tr>
+        <tr><td>想和朋友组队但学校不支持可以吗？</td><td>可以，报名时学校选 <b>“Independiente（独立）”</b>。</td></tr>
+        <tr><td>软件开发类可以做手机 App 吗？</td><td>可以；记得把<b>如何运行、如何安装</b>解释清楚以便评审测试。</td></tr>
+      </table>
+
+      <h3>评审（Evaluación）</h3>
+      <table>
+        <tr><th style="width:34%">问题</th><th>中文解答</th></tr>
+        <tr><td>按什么标准评审？</td><td>通用国际评分标准（Rúbricas），共 12 项，见下方“评分标准”。</td></tr>
+        <tr><td>怎么发奖？</td><td>按<b>分档（bloques）</b>评奖，会有<b>多个金奖/银奖/铜奖</b>。示例：100 队参赛 → 金奖 10 队、银奖 20 队、铜奖 30 队。</td></tr>
+        <tr><td>所在地有地区赛，能直接进洲际总决赛吗？</td><td><b>不能</b>。唯一晋级洲际总决赛的途径是<b>赢得地区赛</b>。总决赛仅接受：国际认证获奖者、各地区赛获奖者、以及来自<b>没有地区赛/联盟赛</b>的州/国家而直接申请（apply）的团队。</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>五、评分标准（12 项国际评分表）</h2>
+      <table>
+        <tr><th>#</th><th>英文原文</th><th>中文</th></tr>
+        <tr><td>1</td><td>Documentation · Originality / Creativity</td><td>文档 · 原创性 / 创意</td></tr>
+        <tr><td>2</td><td>The stand design</td><td>展台设计</td></tr>
+        <tr><td>3</td><td>Difficulty</td><td>难度</td></tr>
+        <tr><td>4</td><td>Technical Skills</td><td>技术能力</td></tr>
+        <tr><td>5</td><td>Visual impact</td><td>视觉冲击力</td></tr>
+        <tr><td>6</td><td>Message &amp; idea</td><td>信息与立意</td></tr>
+        <tr><td>7</td><td>Graphical aspect</td><td>图形表现</td></tr>
+        <tr><td>8</td><td>Content</td><td>内容</td></tr>
+        <tr><td>9</td><td>Artistic development</td><td>艺术表达</td></tr>
+        <tr><td>10</td><td>Usability (interface)</td><td>易用性（界面）</td></tr>
+        <tr><td>11</td><td>Functionality</td><td>功能性</td></tr>
+        <tr><td>12</td><td>Practical Usability</td><td>实际可用性</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>六、联系方式与重要说明</h2>
+      <table>
+        <tr><th>项目</th><th>内容</th></tr>
+        <tr><td>地址</td><td>Sierra de Pihuamo 1594, Col. Las Águilas, CP 45080, Zapopan, Jalisco, México（墨西哥哈利斯科州）</td></tr>
+        <tr><td>电话 / WhatsApp</td><td>+52 33 3334 5654（WhatsApp）；+52 33 1073 3731</td></tr>
+        <tr><td>邮箱</td><td>contacto@solacyt.org（缴费咨询 mando@solacyt.org）</td></tr>
+        <tr><td>官方 WhatsApp 频道</td><td><a href="https://whatsapp.com/channel/0029Vb67ee0HwXbGyphTk31j" target="_blank">SOLACYT 频道</a>（第一时间获取竞赛公告）</td></tr>
+      </table>
+      <div class="note">📌 <b>赛区与日期：</b>Infomatrix 在不同国家/州设有多个赛区（如墨西哥各州、阿根廷、玻利维亚、哥伦比亚等），<b>报名截止和比赛日期各不相同</b>。请务必在官网进入你<b>所在 / 计划参加的赛区页面</b>查看 “Fecha del evento（比赛日期）”“Límite de inscripción（报名截止）”“Envío de reporte（提交报告截止）”等关键信息。</div>
+      <div class="tip">⚠️ 本指南是基于官网公开内容整理的中文参考，<b>以官网原文为准</b>。报名表单、缴费按钮、动态提示等页面元素没有包含在这里，遇到看不懂的截图，请切换到上方「🖼️ 截图翻译」标签。</div>
+    </div>
+  </section>
+
+  <!-- ============ 翻译工具 ============ -->
+  <section class="panel" id="tab-translate">
+    <div class="card">
+      <h2>截图 / 粘贴文本翻译</h2>
+      <p class="sub">方式一：上传截图自动识别文字；方式二：直接粘贴从网页复制的文字（更精准、保留原文）。识别后自动译成中文，并尽量保持语序与上下文连贯。</p>
+
+      <div class="dropzone" id="dropzone">
+        <span class="ic">📷</span>
+        <b>点击选择截图，或将图片拖到这里</b><br>
+        <span style="font-size:13px">支持 Ctrl+V 直接粘贴剪贴板里的截图（在页面任意处按下）</span>
+        <input type="file" id="fileInput" accept="image/*" class="hidden">
+      </div>
+
+      <div class="preview-wrap" style="margin-top:14px">
+        <div>
+          <div class="label">图片预览</div>
+          <div style="border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fafbfe">
+            <img id="preview" alt="" style="width:100%;display:none">
+            <div id="previewEmpty" style="padding:30px;text-align:center;color:#aab">尚未选择图片</div>
+          </div>
+        </div>
+        <div>
+          <div class="label">源语言</div>
+          <select id="srcLang">
+            <option value="auto">自动检测</option>
+            <option value="es">西班牙语 Español</option>
+            <option value="en">英语 English</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:16px">
+        <button class="btn primary" id="btnOCR" disabled>🔍 识别并翻译</button>
+        <button class="btn ghost" id="btnClear">清空</button>
+        <span id="status" class="progress"></span>
+      </div>
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="card">
+      <h3>粘贴原文（方式二，推荐）</h3>
+      <textarea id="pasteText" placeholder="把从网页复制的西班牙语/英语原文粘贴到这里，例如报名表字段、邮件、公告文字……"></textarea>
+      <div class="row" style="margin-top:12px">
+        <select id="srcLang2" style="max-width:200px">
+          <option value="auto">自动检测</option>
+          <option value="es">西班牙语</option>
+          <option value="en">英语</option>
+        </select>
+        <button class="btn primary" id="btnPaste">🌐 翻译成中文</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>翻译结果</h2>
+      <div class="preview-wrap">
+        <div>
+          <div class="label">原文（识别结果，可对照修正）</div>
+          <div class="outbox" id="srcOut">—</div>
+        </div>
+        <div>
+          <div class="label">中文译文 <span class="engine-tag" id="engineTag" style="display:none"></span></div>
+          <div class="outbox zh" id="zhOut">—</div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn ghost" id="copySrc">复制原文</button>
+        <button class="btn ghost" id="copyZh">复制译文</button>
+      </div>
+      <div class="note" style="margin-top:16px">🔧 <b>若自动翻译失败</b>（网络无法访问翻译接口时），请用「复制原文」把识别出的文字复制到其它翻译软件，或切换到「粘贴原文」模式手动输入。识别结果中的专有名词会在「术语速查」里高亮说明。</div>
+    </div>
+  </section>
+
+  <!-- ============ 术语 ============ -->
+  <section class="panel" id="tab-glossary">
+    <div class="card">
+      <h2>Infomatrix 高频词汇速查</h2>
+      <p class="sub">西班牙语（部分英语）→ 中文，按主题分组。</p>
+
+      <h3>🧾 报名与流程</h3>
+      <table>
+        <tr><th>西语 / 英语</th><th>中文</th><th>说明</th></tr>
+        <tr><td>Inscripción / Registro</td><td>报名 / 注册</td><td>竞赛报名</td></tr>
+        <tr><td>Convocatoria</td><td>竞赛通告 / 赛制公告</td><td>含规则、费用、日期的官方文件</td></tr>
+        <tr><td>Asesor</td><td>指导老师 / 顾问</td><td>须成年，接收赛事通知</td></tr>
+        <tr><td>Participante</td><td>参赛者</td><td></td></tr>
+        <tr><td>Equipo</td><td>团队</td><td></td></tr>
+        <tr><td>Proyecto</td><td>项目 / 作品</td><td>计费单位（按项目收费）</td></tr>
+        <tr><td>Pago de Registro</td><td>注册缴费</td><td></td></tr>
+        <tr><td>Cuota / Costo de inscripción</td><td>报名费用</td><td></td></tr>
+        <tr><td>Envío de reporte</td><td>提交报告 / 上传作品</td><td></td></tr>
+        <tr><td>Límite de inscripción</td><td>报名截止</td><td></td></tr>
+        <tr><td>Cierre de registros</td><td>截止注册</td><td></td></tr>
+        <tr><td>Preselección</td><td>预选</td><td></td></tr>
+      </table>
+
+      <h3>🏆 比赛与评审</h3>
+      <table>
+        <tr><th>西语 / 英语</th><th>中文</th><th>说明</th></tr>
+        <tr><td>Concurso</td><td>竞赛</td><td></td></tr>
+        <tr><td>Categoría / Modalidad</td><td>类别 / 组别</td><td></td></tr>
+        <tr><td>Evaluación</td><td>评审 / 评估</td><td></td></tr>
+        <tr><td>Rúbricas</td><td>评分标准 / 评分表</td><td>国际通用评分表</td></tr>
+        <tr><td>Ganador</td><td>获奖者</td><td></td></tr>
+        <tr><td>ORO / PLATA / BRONCE</td><td>金奖 / 银奖 / 铜奖</td><td></td></tr>
+        <tr><td>Fase Regional</td><td>地区赛阶段</td><td></td></tr>
+        <tr><td>Final Continental</td><td>洲际总决赛</td><td>须赢得地区赛才能晋级</td></tr>
+        <tr><td>Acreditado / Acreditación</td><td>认证 / 获资格（团队）</td><td>可豁免地区赛直接晋级</td></tr>
+        <tr><td>Sede</td><td>举办地 / 会场</td><td></td></tr>
+        <tr><td>Delegado/a</td><td>代表 / 州级负责人</td><td></td></tr>
+      </table>
+
+      <h3>🎨 作品类型关键词</h3>
+      <table>
+        <tr><th>西语 / 英语</th><th>中文</th></tr>
+        <tr><td>Robótica</td><td>机器人</td></tr>
+        <tr><td>Prototipo</td><td>原型</td></tr>
+        <tr><td>Cortometraje</td><td>短片</td></tr>
+        <tr><td>Animación</td><td>动画</td></tr>
+        <tr><td>Arte Digital</td><td>数字艺术</td></tr>
+        <tr><td>Juego de Mesa</td><td>桌游</td></tr>
+        <tr><td>Divulgación Científica</td><td>科学传播 / 科普</td></tr>
+        <tr><td>Desarrollo de Software</td><td>软件开发</td></tr>
+        <tr><td>Videojuego</td><td>电子游戏</td></tr>
+        <tr><td>Cuento Científico</td><td>科学故事</td></tr>
+        <tr><td>Ciencia Aplicada</td><td>应用科学</td></tr>
+        <tr><td>Investigación</td><td>研究 / 调查</td></tr>
+        <tr><td>Emprendimiento</td><td>创业</td></tr>
+        <tr><td>Estudiantil</td><td>学生的</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <div class="foot">
+    本地离线工具 · 数据不会上传 · 翻译接口需联网 · 由 TRAE 构建于 2026-10-10 ·
+    <a href="https://www.infomatrix.lat/" target="_blank">访问官网</a>
+  </div>
+</div>
+
+<script>
+/* ========= 标签切换 ========= */
+const tabs = document.querySelectorAll('nav.tabs button');
+const panels = {guide:document.getElementById('tab-guide'), translate:document.getElementById('tab-translate'), glossary:document.getElementById('tab-glossary')};
+tabs.forEach(btn=>btn.addEventListener('click',()=>{
+  tabs.forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  Object.values(panels).forEach(p=>p.classList.remove('active'));
+  panels[btn.dataset.tab].classList.add('active');
+}));
+
+/* ========= 术语表（用于高亮） ========= */
+const GLOSSARY = [
+  ['inscripción','报名'],['inscripcion','报名'],['registro','注册'],
+  ['convocatoria','竞赛通告'],['asesor','指导老师'],['participante','参赛者'],
+  ['equipo','团队'],['proyecto','项目/作品'],['cuota','费用'],
+  ['evaluación','评审'],['evaluacion','评审'],['rúbricas','评分标准'],
+  ['ganador','获奖者'],['oro','金奖'],['plata','银奖'],['bronce','铜奖'],
+  ['sede','举办地'],['cortometraje','短片'],['animación','动画'],['animacion','动画'],
+  ['robótica','机器人'],['robotica','机器人'],['prototipo','原型'],
+  ['divulgación','科学传播'],['emprendimiento','创业'],['investigación','研究']
+];
+
+/* ========= 翻译工具 ========= */
+const dropzone=document.getElementById('dropzone');
+const fileInput=document.getElementById('fileInput');
+const preview=document.getElementById('preview');
+const previewEmpty=document.getElementById('previewEmpty');
+const btnOCR=document.getElementById('btnOCR');
+const btnClear=document.getElementById('btnClear');
+const srcLang=document.getElementById('srcLang');
+const pasteText=document.getElementById('pasteText');
+const srcLang2=document.getElementById('srcLang2');
+const btnPaste=document.getElementById('btnPaste');
+const srcOut=document.getElementById('srcOut');
+const zhOut=document.getElementById('zhOut');
+const engineTag=document.getElementById('engineTag');
+const progress=document.getElementById('progress');
+const statusEl=document.getElementById('status');
+
+let currentImage=null; // File | dataURL (for paste)
+let tesseractLoading=null; // promise
+
+dropzone.addEventListener('click',()=>fileInput.click());
+fileInput.addEventListener('change',e=>{ if(e.target.files[0]) loadImageFile(e.target.files[0]); });
+['dragenter','dragover'].forEach(ev=>dropzone.addEventListener(ev,e=>{e.preventDefault();dropzone.classList.add('drag');}));
+['dragleave','drop'].forEach(ev=>dropzone.addEventListener(ev,e=>{e.preventDefault();dropzone.classList.remove('drag');}));
+dropzone.addEventListener('drop',e=>{ const f=e.dataTransfer.files[0]; if(f && f.type.startsWith('image/')) loadImageFile(f); });
+window.addEventListener('paste',e=>{
+  const items=(e.clipboardData||{}).items||[];
+  for(const it of items){
+    if(it.type.startsWith('image/')){ const f=it.getAsFile(); if(f){ loadImageFile(f); break; } }
+  }
+});
+
+function loadImageFile(file){
+  currentImage=file;
+  const url=URL.createObjectURL(file);
+  preview.src=url; preview.style.display='block'; previewEmpty.style.display='none';
+  btnOCR.disabled=false;
+  statusEl.textContent='';
+}
+
+btnClear.addEventListener('click',()=>{
+  currentImage=null; preview.removeAttribute('src'); preview.style.display='none';
+  previewEmpty.style.display='block'; btnOCR.disabled=true;
+  srcOut.textContent='—'; zhOut.textContent='—'; engineTag.style.display='none';
+  statusEl.textContent=''; progress.textContent='';
+});
+
+function ensureTesseract(){
+  if(window.Tesseract) return Promise.resolve(window.Tesseract);
+  if(tesseractLoading) return tesseractLoading;
+  tesseractLoading=new Promise((resolve,reject)=>{
+    const s=document.createElement('script');
+    s.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+    s.onload=()=>{ window.Tesseract?resolve(window.Tesseract):reject(new Error('加载失败')); };
+    s.onerror=()=>{
+      // 备用 CDN
+      const s2=document.createElement('script');
+      s2.src='https://unpkg.com/tesseract.js@5/dist/tesseract.min.js';
+      s2.onload=()=>{ window.Tesseract?resolve(window.Tesseract):reject(new Error('加载失败')); };
+      s2.onerror=()=>reject(new Error('无法加载 OCR 组件，请检查网络或改用「粘贴原文」模式'));
+      document.head.appendChild(s2);
+    };
+    document.head.appendChild(s);
+  });
+  return tesseractLoading;
+}
+
+async function runOCR(){
+  if(!currentImage){ return; }
+  btnOCR.disabled=true;
+  const langMap={auto:'spa+eng',es:'spa',en:'eng'};
+  const langs=langMap[srcLang.value]||'spa+eng';
+  let worker;
+  try{
+    progress.textContent='正在加载 OCR 识别组件（首次约需下载 10MB 模型）…';
+    const T=await ensureTesseract();
+    progress.textContent='正在识别文字…';
+    worker=await T.createWorker(langs,1,{
+      logger:m=>{ if(m.status==='recognizing text') progress.textContent='识别中 '+Math.round(m.progress*100)+'%'; }
+    });
+    const {data}=await worker.recognize(currentImage);
+    worker.terminate(); worker=null;
+    const text=(data.text||'').trim();
+    if(!text){ statusEl.textContent='⚠️ 未识别到文字，可尝试更清晰的截图'; srcOut.textContent='—'; zhOut.textContent='—'; return; }
+    srcOut.textContent=text;
+    highlightGlossary();
+    progress.textContent='正在翻译…';
+    const from=resolveSourceLang(text, srcLang.value);
+    const res=await translateText(text, from, 'zh-CN');
+    zhOut.textContent=res.text;
+    engineTag.style.display='inline';
+    engineTag.textContent=res.engine;
+    statusEl.textContent='✅ 完成';
+  }catch(err){
+    console.error(err);
+    progress.textContent='';
+    statusEl.textContent='❌ '+(err && err.message?err.message:'翻译失败，请改用「粘贴原文」或检查网络');
+  }finally{
+    if(worker){ try{worker.terminate();}catch(e){} }
+    btnOCR.disabled=!currentImage;
+  }
+}
+btnOCR.addEventListener('click',runOCR);
+
+btnPaste.addEventListener('click',async()=>{
+  const text=pasteText.value.trim();
+  if(!text){ statusEl.textContent='请先粘贴文字'; return; }
+  btnPaste.disabled=true;
+  try{
+    progress.textContent='正在翻译…';
+    const from=resolveSourceLang(text, srcLang2.value);
+    const res=await translateText(text, from, 'zh-CN');
+    srcOut.textContent=text; highlightGlossary();
+    zhOut.textContent=res.text;
+    engineTag.style.display='inline'; engineTag.textContent=res.engine;
+    statusEl.textContent='✅ 完成';
+  }catch(err){
+    statusEl.textContent='❌ '+(err && err.message?err.message:'翻译失败，请检查网络');
+  }finally{ btnPaste.disabled=false; progress.textContent=''; }
+});
+
+function resolveSourceLang(text, sel){
+  if(sel && sel!=='auto') return sel;
+  const es=/[áéíóúñü¿¡]/i.test(text);
+  return es?'es':'en';
+}
+
+/* ========= 翻译后端（依次回退） ========= */
+function toBing(code){ return code==='zh-CN'?'zh-Hans':code; }
+function toGoogle(code){ return code==='zh-CN'?'zh-CN':code; }
+
+async function bingTranslate(text, from, to){
+  let r=await fetch('https://edge.microsoft.com/translate/auth');
+  if(!r.ok) throw new Error('Bing auth '+r.status);
+  const token=await r.text();
+  const toC=toBing(to), fromC=(from==='auto'?'es':toBing(from));
+  const url=`https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=${fromC}&to=${toC}`;
+  r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify([{Text:text}])});
+  if(!r.ok) throw new Error('Bing '+r.status);
+  const d=await r.json();
+  const out=(d[0]&&d[0].translations&&d[0].translations.map(t=>t.text).join(''))||'';
+  if(!out) throw new Error('Bing empty');
+  return out;
+}
+
+async function googleTranslate(text, from, to){
+  const fromC=(from==='auto'?'auto':toGoogle(from));
+  const toC=toGoogle(to);
+  const url=`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${fromC}&tl=${toC}&dt=t&q=${encodeURIComponent(text)}`;
+  const r=await fetch(url);
+  if(!r.ok) throw new Error('Google '+r.status);
+  const d=await r.json();
+  const out=((d[0]||[]).map(s=>s&&s[0]||'').join('')).trim();
+  if(!out) throw new Error('Google empty');
+  return out;
+}
+
+async function myMemoryTranslate(text, from, to){
+  const fromC=(from==='auto'?'es':(from==='en'?'en':'es'));
+  const toC=to==='zh-CN'?'zh-CN':to;
+  const url=`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${fromC}|${toC}`;
+  const r=await fetch(url);
+  if(!r.ok) throw new Error('MyMemory '+r.status);
+  const d=await r.json();
+  const out=d&&d.responseData&&d.responseData.translatedText;
+  if(!out || /INVALID|QUERY LENGTH|NO QUERY|MYMEMORY WARNING/i.test(out)) throw new Error('MyMemory empty');
+  return out;
+}
+
+const BACKENDS=[
+  {name:'微软翻译', fn:bingTranslate},
+  {name:'谷歌翻译', fn:googleTranslate},
+  {name:'MyMemory', fn:myMemoryTranslate},
+];
+
+async function translateText(text, from, to){
+  // 分块以保障长文本与上下文连贯（保留整句）
+  const chunks=splitChunks(text, 3500);
+  let lastErr=null, engine='';
+  const translated=[];
+  for(const c of chunks){
+    let ok=false;
+    for(const b of BACKENDS){
+      try{
+        const out=await b.fn(c, from, to);
+        if(out && out.trim()){ translated.push(out.trim()); engine=b.name; ok=true; break; }
+      }catch(e){ lastErr=e; }
+    }
+    if(!ok) throw lastErr||new Error('所有翻译接口均失败');
+    // 小延时，避免限流
+    await sleep(150);
+  }
+  return {text:translated.join('\n'), engine};
+}
+function splitChunks(text, max){
+  const out=[]; let cur='';
+  const lines=text.split('\n');
+  for(const line of lines){
+    if((cur+'\n'+line).length>max && cur){ out.push(cur); cur=line; }
+    else cur=cur?cur+'\n'+line:line;
+  }
+  if(cur) out.push(cur);
+  return out;
+}
+function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
+
+/* ========= 复制 / 术语高亮 ========= */
+function highlightGlossary(){
+  const el=srcOut, text=el.textContent;
+  let html=escapeHtml(text);
+  for(const [term,zh] of GLOSSARY){
+    const re=new RegExp('\\b'+term+'\\b','gi');
+    html=html.replace(re, m=>`<mark title="${zh}">${m}</mark>`);
+  }
+  el.innerHTML=html;
+}
+function escapeHtml(s){ return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function copyText(target){
+  const t=target.textContent;
+  if(!t||t==='—') return;
+  navigator.clipboard.writeText(t).then(()=>{
+    const old=statusEl.textContent; statusEl.textContent='已复制到剪贴板';
+    setTimeout(()=>statusEl.textContent=old, 1200);
+  }).catch(()=>{});
+}
+document.getElementById('copySrc').addEventListener('click',()=>copyText(srcOut));
+document.getElementById('copyZh').addEventListener('click',()=>copyText(zhOut));
+</script>
+</body>
+</html>
